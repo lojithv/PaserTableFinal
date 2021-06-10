@@ -12,7 +12,6 @@
     table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
   border: 1px solid #ddd;
 }
 
@@ -21,7 +20,7 @@ th, td {
   padding: 8px;
 }
 input {
-  width: 50%;
+  width: 80%;
 }
     </style>
 </head>
@@ -170,7 +169,7 @@ input {
       var parser = new formulaParser.Parser();
       
       window.onload = function() {
-      document.getElementById("Frm1").value = "JOIN(A1:E2)";
+      document.getElementById("Frm1").value = "AVERAGE(Array1,Array2)";
       document.getElementById("Frm2").value = "SUM(A1:E2)";
       document.getElementById("Frm3").value = "ROWS(A1:E2)";
       document.getElementById("Frm4").value = "COUNT(A1:E2)";
@@ -254,8 +253,8 @@ input {
       var ParseredResult = parser.parse(getFormula);
       document.getElementById("Result").value = ParseredResult.result;
       
-      parser.setVariable('fooBar', data1);
-      parser.setVariable('fooBar2', data2);
+      parser.setVariable('Array1', data1);
+      parser.setVariable('Array2', data2);
       
       console.log(parser.getVariable('Array1'));
       console.log(parser.getVariable('Array2'));
