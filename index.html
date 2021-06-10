@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Responsive Table</title>
+
+  <script src="./node_modules/hot-formula-parser/dist/formula-parser.min.js"></script> 
+  <script src="./node_modules/jstat/dist/jstat.min.js"></script>
+  <script src="./node_modules/@formulajs/formulajs/dist/formula.min.js"></script>
+
+  <style>
+    table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+input {
+  width: 50%;
+}
+    </style>
+  
+
+  
+</head>
+
+<body>
+      <table>
+      <thead>
+        
+      <thead><!DOCTYPE html>
+
+        <html>
+        <head>
+            <title>Table</title>
+ 
+
+
+            <script type="text/javascript" >
+
+var parser = new formulaParser.Parser();
+
+window.onload = function() {
+document.getElementById("Frm1").value = "JOIN(A1:E2)";
+document.getElementById("Frm2").value = "SUM(A1:E2)";
+document.getElementById("Frm3").value = "ROWS(A1:E2)";
+document.getElementById("Frm4").value = "COUNT(A1:E2)";
+};
+
+
+FormParse = function () {
+
+  var A1 = parseInt(document.getElementById("A1").value);
+ var A2 = parseInt(document.getElementById("A2").value);
+ var A3 = parseInt(document.getElementById("A3").value);
+ var A4 = parseInt(document.getElementById("A4").value);
+ var A5 = parseInt(document.getElementById("A5").value);
+
+ var B1 = parseInt(document.getElementById("B1").value);
+ var B2 = parseInt(document.getElementById("B2").value);
+ var B3 = parseInt(document.getElementById("B3").value);
+ var B4 = parseInt(document.getElementById("B4").value);
+ var B5 = parseInt(document.getElementById("B5").value);
+
+ var C1 = parseInt(document.getElementById("C1").value);
+ var C2 = parseInt(document.getElementById("C2").value);
+ var C3 = parseInt(document.getElementById("C3").value);
+ var C4 = parseInt(document.getElementById("C4").value);
+ var C5 = parseInt(document.getElementById("C5").value);
+
+ var D1 = parseInt(document.getElementById("D1").value);
+ var D2 = parseInt(document.getElementById("D2").value);
+ var D3 = parseInt(document.getElementById("D3").value);
+ var D4 = parseInt(document.getElementById("D4").value);
+ var D5 = parseInt(document.getElementById("D5").value);
+
+ parser.setVariable('TEST1', A1);
+ console.log("This is a parser variable " + parser.getVariable('TEST1'));
+ 
+ var data1 = [A1, A2, A3, A4, A5];
+
+var data2 = [B1, B2, B3, B4, B5];
+
+var data3 = [C1, C2, C3, C4, C5];
+
+var data4 = [D1, D2, D3, D4, D5];
+
+var data = [data1,data2,data3,data4];
+
+
+parser.on('callRangeValue', function(startCellCoord, endCellCoord, done) {
+
+  var fragment = [];
+
+  for (var row = startCellCoord.row.index; row <= endCellCoord.row.index; row++) {
+    var rowData = data[row];
+    var colFragment = [];
+
+    for (var col = startCellCoord.column.index; col <= endCellCoord.column.index; col++) {
+      colFragment.push(rowData[col]);
+    }
+    fragment.push(colFragment);
+  }
+
+  if (fragment) {
+    done(fragment);
+  }
+});
+
+var test = [
+parser.parse('JOIN(A1:E2)').result,
+parser.parse('COLUMNS(A1:E2)').result,
+parser.parse('ROWS(A1:E2)').result,
+parser.parse('COUNT(A1:E2)').result,
+parser.parse('COUNTIF(A1:E2, ">5")').result 
+];
+
+Answer1.value = parser.parse('AVERAGE(A1:E2)').result;
+Answer2.value = parser.parse('SUM(A1:E2)').result;
+Answer3.value = parser.parse('ROWS(A1:E2)').result;
+Answer4.value = parser.parse('COUNT(A1:E2)').result;
+
+
+getFormula = document.getElementById("formula").value;
+var ParseredResult = parser.parse(getFormula);
+document.getElementById("Result").value = ParseredResult.result;
+
+parser.setVariable('fooBar', data1);
+parser.setVariable('fooBar2', data2);
+
+console.log(parser.getVariable('fooBar'));
+console.log(parser.getVariable('fooBar2'));
+
+
+console.log(parser.parse('AVERAGE(fooBar,fooBar2)'));
+
+} // end FormParse
+
+ </script>    
+</head>
+        
+<body>
+    <div>
+    <h1>formula</h1>
+    <input type = "text" id = "formula">
+      <section>
+        <input type = "button"
+        value = "Calculate"
+        onClick = "javascript:FormParse()"/>
+      </section>
+  <input type = "text"
+        id = "Result" READONLY>
+  </div>
+  <div id="demo"></div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>Function</th>
+        <th>Answer</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+        <td><input type = "number"
+            id = "A1" required>
+        </td>
+        <td><input type = "number"
+            id = "A2" required>
+        </td>
+        <td><input type = "number"
+            id = "A3" required>
+        </td>
+        <td><input type = "number"
+            id = "A4" >
+        </td>
+        <td><input type = "number"
+          id = "A5" >
+      </td>
+      <td><input type = "text"
+        id = "Frm1" >
+    </td>
+      <td><input type = "text"
+        id = "Answer1" READONLY>
+    </td>
+
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td><input type = "text"
+          id = "B1">
+      </td>
+      <td><input type = "text"
+          id = "B2">
+      </td>
+      <td><input type = "text"
+          id = "B3">
+      </td>
+      <td><input type = "text"
+          id = "B4" >
+      </td>
+      <td><input type = "text"
+        id = "B5" >
+      </td>
+      <td><input type = "text"
+        id = "Frm2" >
+      </td>
+      <td><input type = "text"
+        id = "Answer2" READONLY>
+      </td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td><input type = "text"
+          id = "C1">
+      </td>
+      <td><input type = "text"
+          id = "C2">
+      </td>
+      <td><input type = "text"
+          id = "C3">
+      </td>
+      <td><input type = "text"
+          id = "C4" >
+      </td>
+      <td><input type = "text"
+        id = "C5" >
+      </td>
+      <td><input type = "text"
+        id = "Frm3" >
+      </td>
+      <td><input type = "text"
+        id = "Answer3" READONLY>
+      </td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td><input type = "text"
+          id = "D1">
+      </td>
+      <td><input type = "text"
+          id = "D2">
+      </td>
+      <td><input type = "text"
+          id = "D3">
+      </td>
+      <td><input type = "text"
+          id = "D4" >
+      </td>
+      <td><input type = "text"
+        id = "D5" >
+      </td>
+      <td><input type = "text"
+        id = "Frm4" >
+      </td>
+      <td><input type = "text"
+        id = "Answer4" READONLY>
+      </td>
+    </tr>
+    </table>
+
+    
+
+</body>
+</html>
+  
+</body>
+</html>
